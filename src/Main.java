@@ -14,18 +14,17 @@ public class Main {
                 5) Dólar Americano para Euro
                 6) Euro para Dólar Americano
                 7) Sair
-                                    
                 Escolha uma opção válida:
-                """);
+                """
+        );
     }
 
     public static void main(String[] args) {
         Scanner read = new Scanner(System.in);
         Pair pair = new Pair();
         Converter converter = new Converter();
-        int choice = 0;
+        int choice;
         double currency;
-
 
         while (true) {
             menu();
@@ -45,17 +44,12 @@ public class Main {
                 read.next();
                 continue;
             }
-
             pair.choiceConversor(choice);
 
             System.out.print("Digite o valor a ser convertido: ");
             currency = read.nextDouble();
-
             ExchangeRate exchangeRate = converter.exchangeRate(pair.getCurrencyIn(), pair.getCurrencyOut(), currency);
-
             System.out.println(exchangeRate.toString());
-
         }
-
     }
 }
