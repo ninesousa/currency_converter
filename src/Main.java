@@ -7,7 +7,6 @@ public class Main {
         System.out.println("""
                 ********************************************************
                 Selecione uma opção de conversão:
-                                    
                 1) Dólar Americano para Real
                 2) Real para Dólar Americano
                 3) Dólar Americano para Peso Argentino
@@ -17,7 +16,6 @@ public class Main {
                 7) Sair
                                     
                 Escolha uma opção válida:
-                ********************************************************
                 """);
     }
 
@@ -26,6 +24,8 @@ public class Main {
         Pair pair = new Pair();
         Converter converter = new Converter();
         int choice = 0;
+        double currency;
+
 
         while (true) {
             menu();
@@ -36,6 +36,9 @@ public class Main {
                 if (choice < 1 || choice > 7) {
                     System.out.println("Digite uma opção entre 1 e 7");
                     continue;
+                } else if (choice == 7) {
+                    System.out.println("Saindo do programa...");
+                    break;
                 }
             } catch (InputMismatchException e) {
                 System.out.println("O programa espera um número entre 1 e 7");
@@ -44,11 +47,15 @@ public class Main {
             }
 
             pair.choiceConversor(choice);
-            System.out.println("Foi escolhido o " + pair.getCurrencyIn() + " para " + pair.getCurrencyOut());
 
+            System.out.print("Digite o valor a ser convertido: ");
+            currency = read.nextDouble();
+
+            ExchangeRate exchangeRate = converter.exchangeRate(pair.getCurrencyIn(), pair.getCurrencyOut(), currency);
+
+            System.out.println(exchangeRate.toString());
 
         }
 
     }
-
 }
